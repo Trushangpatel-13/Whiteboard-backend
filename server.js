@@ -1,5 +1,9 @@
 var app = require('express')();
-app.use(require("cors")())
+app.use(function (req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
+  });
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 io.on('connection', (socket)=> {
