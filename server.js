@@ -1,11 +1,17 @@
 var app = require('express')();
+/*
 app.use(function (req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       next();
   });
+*/
 var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+var io = require('socket.io')(http,{
+      cors:{
+            origin: "*"
+      }
+});
 io.on('connection', (socket)=> {
       console.log('User Online');
 
